@@ -5,6 +5,7 @@ output: html_notebook
 
 ```{r}
 library(tidyverse)
+library(cowplot)
 ```
 
 ## Loading the dataset
@@ -26,6 +27,7 @@ data$SALE <- as.factor(data$SALE)
 ```
 
 ## EDA
+
 ```{r}
 xtabs(~ WSS + SALE, data=data)
 ```
@@ -47,4 +49,33 @@ McFadden's Pseudo R2
 ll.null <- mod$null.deviance/-2
 ll.proposed <- mod$deviance/-2
 (ll.null - ll.proposed)/ll.null
+```
+
+Testing R2
+```{r}
+1 - pchisq(2 * (ll.proposed - ll.null), df = length(mod$coefficients) - 1)
+```
+
+Note: We can use cross-validation to evaluate how the model performs with unseen data.
+
+```{r}
+predicted.data <- data.frame(prob.of.SALE=mod$fitted.values, SALE=data$SALE)
+predicted.data <- predicted.data[order(predicted.data$prob.of.SALE, decreasing = FALSE),]
+predicted.data$RANK <-  1:nrow(predicted.data)
+predicted.data %>%
+  ggplot(aes(x=RANK, y=prob.of.SALE)) + 
+  geom_point(aes(color=SALE), shape=4, stroke=2) +
+  xlab('index') +
+  ylab('predicted probability')
+```
+```{r}
+confint(mod)
+```
+
+```{r}
+predict(mod, newdata=data.frame(WSS=c(1),TEMP=c(23)), type='response')
+```
+
+```{r}
+predict(mod, newdata=data.frame(WSS=c(1),TEMP=c(23)), interval=TRUE, level=0.5, type='response')
 ```
