@@ -1,0 +1,77 @@
+---
+title: "CH3 - Multiple Linear Regression"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(corrplot)
+library(cowplot)
+library(GGally)   
+```
+## Load dataset
+
+```{r}
+data <- read_csv('data.csv')
+```
+
+```{r}
+data %>%
+  str()
+```
+```{r}
+data %>% 
+  is.na() %>%
+  sum()
+```
+
+## EDA
+```{r}
+data %>%
+  summary()
+```
+```{r}
+data %>%
+  ggpairs()
+```
+
+```{r}
+data %>%
+  cor()
+```
+
+```{r}
+data %>%
+  cor() %>%
+  corrplot()
+```
+
+## Modeling
+
+```{r}
+mod <- lm(SALES ~ SPACE + DISTANCE, data=data)
+```
+
+```{r}
+mod %>% summary()
+```
+```{r}
+mod %>% anova()
+```
+```{r}
+confint(mod, level=0.95)
+```
+```{r}
+mod %>% plot()
+```
+
+## Making Predictions
+
+```{r}
+predict(mod, newdata=data.frame(SPACE=10, DISTANCE=80), interval='confidence', level=0.95)
+```
+
+```{r}
+predict(mod, newdata=data.frame(SPACE=10, DISTANCE=110), interval='prediction', level=0.95)
+```
