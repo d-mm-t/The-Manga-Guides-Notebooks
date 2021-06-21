@@ -1754,6 +1754,20 @@ summary {
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5gYGAifQ== -->
 <pre class="r"><code>library(tidyverse)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2RzIG92ZXJ3cml0dGVuIGJ5ICdkYnBseXInOlxuICBtZXRob2QgICAgICAgICBmcm9tXG4gIHByaW50LnRibF9sYXp5ICAgICBcbiAgcHJpbnQudGJsX3NxbCAgICAgIFxu4pSA4pSAIEF0dGFjaGluZyBwYWNrYWdlcyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlIDEuMy4xIOKUgOKUgFxu4pyTIGdncGxvdDIgMy4zLjMgICAgIOKckyBwdXJyciAgIDAuMy40XG7inJMgdGliYmxlICAzLjEuMSAgICAg4pyTIGRwbHlyICAgMS4wLjVcbuKckyB0aWR5ciAgIDEuMS4zICAgICDinJMgc3RyaW5nciAxLjQuMFxu4pyTIHJlYWRyICAgMS40LjAgICAgIOKckyBmb3JjYXRzIDAuNS4xXG7ilIDilIAgQ29uZmxpY3RzIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgCB0aWR5dmVyc2VfY29uZmxpY3RzKCkg4pSA4pSAXG54IGRwbHlyOjpmaWx0ZXIoKSBtYXNrcyBzdGF0czo6ZmlsdGVyKClcbnggZHBseXI6OmxhZygpICAgIG1hc2tzIHN0YXRzOjpsYWcoKVxuIn0= -->
+<pre><code>Registered S3 methods overwritten by &#39;dbplyr&#39;:
+  method         from
+  print.tbl_lazy     
+  print.tbl_sql      
+── Attaching packages ────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
+✓ ggplot2 3.3.3     ✓ purrr   0.3.4
+✓ tibble  3.1.1     ✓ dplyr   1.0.5
+✓ tidyr   1.1.3     ✓ stringr 1.4.0
+✓ readr   1.4.0     ✓ forcats 0.5.1
+── Conflicts ───────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <div id="loading-the-dataset" class="section level2">
@@ -1807,11 +1821,13 @@ cols(
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29yKGRhdGEkVEVNUCwgZGF0YSRPUkRFUlMpXG5gYGAifQ== -->
-<pre class="r"><code>cor(data$TEMP, data$ORDERS)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29yKGRhdGEpXG5gYGAifQ== -->
+<pre class="r"><code>cor(data)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuOTA2OTIzXG4ifQ== -->
-<pre><code>[1] 0.906923</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgICAgICBURU1QICAgT1JERVJTXG5URU1QICAgMS4wMDAwMDAgMC45MDY5MjNcbk9SREVSUyAwLjkwNjkyMyAxLjAwMDAwMFxuIn0= -->
+<pre><code>           TEMP   ORDERS
+TEMP   1.000000 0.906923
+ORDERS 0.906923 1.000000</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1916,8 +1932,8 @@ TEMP          2.844517   4.631254</code></pre>
 <!-- rnb-text-begin -->
 </div>
 </div>
-<div id="make-predictions" class="section level2">
-<h2>Make Predictions</h2>
+<div id="making-predictions" class="section level2">
+<h2>Making Predictions</h2>
 <p>Confidence interval for the mean number of iced tea orders:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
@@ -1943,7 +1959,7 @@ TEMP          2.844517   4.631254</code></pre>
 <!-- rnb-chunk-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiU2ltcGxlIExpbmVhciBSZWdyZXNzaW9uIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgpgYGB7cn0KbGlicmFyeSh0aWR5dmVyc2UpCmBgYAoKIyMgTG9hZGluZyB0aGUgZGF0YXNldAoKYGBge3J9CmRhdGEgPC0gcmVhZF9jc3YoJ2RhdGEuY3N2JykKYGBgCiMjIEVEQQoKYGBge3J9CmRhdGEgJT4lIHN1bW1hcnkoKQpgYGAKCmBgYHtyfQpkYXRhICU+JQogIGdncGxvdChhZXMoeD1URU1QLCB5PU9SREVSUykpICsKICBnZW9tX3BvaW50KCkgKwogIGdlb21fc21vb3RoKG1ldGhvZD0nbG0nKQpgYGAKCmBgYHtyfQpjb3IoZGF0YSRURU1QLCBkYXRhJE9SREVSUykKYGBgCiMjIE1vZGVsaW5nCgpgYGB7cn0KbW9kIDwtIGxtKE9SREVSUyB+IFRFTVAsIGRhdGE9ZGF0YSkKc3VtbWFyeShtb2QpCmBgYApgYGB7cn0KYXR0cmlidXRlcyhtb2QpCmBgYApgYGB7cn0KYW5vdmEobW9kKQpgYGAKYGBge3J9CmNvZWYobW9kKQpgYGAKYGBge3J9CmNvbmZpbnQobW9kLCBsZXZlbD0wLjkwKQpgYGAKCiMjIyBDaGVja2luZyB0aGUgYXNzdW1wdGlvbnMgb2YgU0xSCmBgYHtyfQpwbG90KG1vZCkKYGBgCgojIyBNYWtlIFByZWRpY3Rpb25zCgpDb25maWRlbmNlIGludGVydmFsIGZvciB0aGUgbWVhbiBudW1iZXIgb2YgaWNlZCB0ZWEgb3JkZXJzOgoKYGBge3J9CnByZWRpY3QobW9kLCBuZXdkYXRhPWRhdGEuZnJhbWUoVEVNUD0zMSksIGludGVydmFsPSdjb25maWRlbmNlJywgbGV2ZWw9MC45NSkKYGBgClByZWRpY3Rpb24gaW50ZXJ2YWwgZm9yIHRoZSBudW1iZXIgb2YgaWNlZCB0ZWEgb3JkZXJzOgoKYGBge3J9CnByZWRpY3QobW9kLCBuZXdkYXRhPWRhdGEuZnJhbWUoVEVNUD0yNyksIGludGVydmFsPSdwcmVkaWN0aW9uJywgbGV2ZWw9MC45NSkKYGBg</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiU2ltcGxlIExpbmVhciBSZWdyZXNzaW9uIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgpgYGB7cn0KbGlicmFyeSh0aWR5dmVyc2UpCmxpYnJhcnkoY293cGxvdCkKYGBgCgojIyBMb2FkaW5nIHRoZSBkYXRhc2V0CgpgYGB7cn0KZGF0YSA8LSByZWFkX2NzdignZGF0YS5jc3YnKQpgYGAKIyMgRURBCgpgYGB7cn0KZGF0YSAlPiUgc3VtbWFyeSgpCmBgYAoKYGBge3J9CmRhdGEgJT4lCiAgZ2dwbG90KGFlcyh4PVRFTVAsIHk9T1JERVJTKSkgKwogIGdlb21fcG9pbnQoKSArCiAgZ2VvbV9zbW9vdGgobWV0aG9kPSdsbScpCmBgYAoKYGBge3J9CmNvcihkYXRhKQpgYGAKIyMgTW9kZWxpbmcKCmBgYHtyfQptb2QgPC0gbG0oT1JERVJTIH4gVEVNUCwgZGF0YT1kYXRhKQpzdW1tYXJ5KG1vZCkKYGBgCmBgYHtyfQphdHRyaWJ1dGVzKG1vZCkKYGBgCmBgYHtyfQphbm92YShtb2QpCmBgYApgYGB7cn0KY29lZihtb2QpCmBgYApgYGB7cn0KY29uZmludChtb2QsIGxldmVsPTAuOTApCmBgYAoKIyMjIENoZWNraW5nIHRoZSBhc3N1bXB0aW9ucyBvZiBTTFIKYGBge3J9CnBsb3QobW9kKQpgYGAKCiMjIE1ha2luZyBQcmVkaWN0aW9ucwoKQ29uZmlkZW5jZSBpbnRlcnZhbCBmb3IgdGhlIG1lYW4gbnVtYmVyIG9mIGljZWQgdGVhIG9yZGVyczoKCmBgYHtyfQpwcmVkaWN0KG1vZCwgbmV3ZGF0YT1kYXRhLmZyYW1lKFRFTVA9MzEpLCBpbnRlcnZhbD0nY29uZmlkZW5jZScsIGxldmVsPTAuOTUpCmBgYApQcmVkaWN0aW9uIGludGVydmFsIGZvciB0aGUgbnVtYmVyIG9mIGljZWQgdGVhIG9yZGVyczoKCmBgYHtyfQpwcmVkaWN0KG1vZCwgbmV3ZGF0YT1kYXRhLmZyYW1lKFRFTVA9MjcpLCBpbnRlcnZhbD0ncHJlZGljdGlvbicsIGxldmVsPTAuOTUpCmBgYA==</div>
 
 
 

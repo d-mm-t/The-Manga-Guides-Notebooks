@@ -5,6 +5,7 @@ output: html_notebook
 
 ```{r}
 library(tidyverse)
+library(cowplot)
 ```
 
 ## Loading the dataset
@@ -26,7 +27,7 @@ data %>%
 ```
 
 ```{r}
-cor(data$TEMP, data$ORDERS)
+cor(data)
 ```
 ## Modeling
 
@@ -52,7 +53,7 @@ confint(mod, level=0.90)
 plot(mod)
 ```
 
-## Make Predictions
+## Making Predictions
 
 Confidence interval for the mean number of iced tea orders:
 
