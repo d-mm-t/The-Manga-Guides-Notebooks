@@ -1,0 +1,53 @@
+---
+title: "Simple Linear Regression"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+```
+
+## Loading the dataset
+
+```{r}
+data <- read_csv('data.csv')
+```
+## EDA
+
+```{r}
+data %>% summary()
+```
+
+```{r}
+data %>%
+  ggplot(aes(x=TEMP, y=ORDERS)) +
+  geom_point() +
+  geom_smooth(method='lm')
+```
+
+```{r}
+cor(data$TEMP, data$ORDERS)
+```
+## Modeling
+
+```{r}
+mod <- lm(ORDERS ~ TEMP, data=data)
+summary(mod)
+```
+```{r}
+attributes(mod)
+```
+```{r}
+anova(mod)
+```
+```{r}
+coef(mod)
+```
+```{r}
+confint(mod, level=0.90)
+```
+
+### Checking the assumptions of SLR
+```{r}
+plot(mod)
+```
