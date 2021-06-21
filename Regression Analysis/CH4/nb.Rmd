@@ -1,0 +1,50 @@
+---
+title: "CH4 - Logistic Regressioon"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+```
+
+## Loading the dataset
+
+```{r}
+data <- read_csv('data.csv')
+```
+
+```{r}
+str(data)
+```
+```{r}
+sum(is.na(data))
+```
+## Data wrangling
+
+```{r}
+data$SALE <- as.factor(data$SALE)
+```
+
+## EDA
+```{r}
+xtabs(~ WSS + SALE, data=data)
+```
+
+## Modeling
+ 
+```{r}
+mod <- glm(SALE ~ WSS, data=data, family='binomial')
+summary(mod)
+```
+
+```{r}
+mod <- glm(SALE ~ ., data=data, family='binomial')
+summary(mod)
+```
+
+McFadden's Pseudo R2
+```{r}
+ll.null <- mod$null.deviance/-2
+ll.proposed <- mod$deviance/-2
+(ll.null - ll.proposed)/ll.null
+```
